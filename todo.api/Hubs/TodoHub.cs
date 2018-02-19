@@ -6,9 +6,9 @@ namespace Todo.Api.Hubs
 {
     public class TodoHub : Hub
     {
-        public void TodoAdded(Models.Todo todo)
+        public void AddTodo(Models.Todo todo)
         {
-            Clients.All.InvokeAsync("todo_added", todo);
+            Clients.All.InvokeAsync("todo-added", todo);
         }
     }
 }
