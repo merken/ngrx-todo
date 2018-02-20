@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'app';
+  title = 'NGRX - TODO';
   todos: Array<any> = [];
 
   constructor(private signalRService: SignalRService) { }

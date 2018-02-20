@@ -1,17 +1,20 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HubConnection } from '@aspnet/signalr-client';
 import { Observable } from 'rxjs/Observable';
-import { catchError, map } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
 
 @Injectable()
 export class SignalRService {
     private hubConnection: HubConnection;
+    private _isInitialized: boolean;
 
     constructor() {
         this.hubConnection = new HubConnection(`${environment.hub_host}/todo`);
+    }
+
+    public get isInitialized(): boolean {
+        return this._isInitialized;
     }
 
     public initializeConnection(): Observable<boolean> {
@@ -19,6 +22,7 @@ export class SignalRService {
             this.hubConnection
                 .start()
                 .then(() => {
+                    this._isInitialized = true;
                     observer.next(true);
                     observer.complete();
                 })
