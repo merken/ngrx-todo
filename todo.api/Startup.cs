@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,6 +12,8 @@ using Microsoft.Extensions.Options;
 using Todo.Api.Hubs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
+using Todo.Api.Repositories;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Todo.Api
 {
@@ -53,6 +56,14 @@ namespace Todo.Api
             {
                 options.Filters.Add(new CorsAuthorizationFilterFactory("CorsPolicy"));
             });
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "TODO API", Version = "v1" });
+                c.DescribeAllEnumsAsStrings();
+            });
+
+            services.AddSingleton(typeof(ITodoRepository), typeof(TodoRepository));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,6 +86,22 @@ namespace Todo.Api
                 routes.MapHub<TodoHub>("todo");
             });
 
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "TODO API V1");
+            });
+
+            RewriteToSwagger(app);
+        }
+
+        private void RewriteToSwagger(IApplicationBuilder app){
+            var option = new RewriteOptions();
+            option.AddRedirect("^$", "swagger");
+
+            app.UseRewriter(option);
         }
     }
 }
