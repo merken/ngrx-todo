@@ -1,0 +1,23 @@
+@import '../../styles';
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  .logo img {
+    margin-top: 20px;
+    height: 60px;
+  }
+  main {
+    display: flex;
+    flex-basis: auto;
+    flex-grow: 1;
+    flex-shrink: 0;
+  }
+  .header {
+    justify-content: space-between;
+    .title {
+      color: $blue;
+      font-size: 40px;
+    }
+  }
+}

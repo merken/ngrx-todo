@@ -20,12 +20,12 @@ export class AppEffects {
           })
     );
 
-    @Effect()
-    todosLoaded$ = this.actions$.ofType(fromActions.TODOS_LOADED).pipe(
-        switchMap(() => {
-            return this.todoService
-              .getTodos()
-              .map(res => new fromActions.TodosLoaded(res));
-          })
-    );
+    // @Effect()
+    // todosLoaded$ = this.actions$.ofType(fromActions.TODOS_LOADED).pipe(
+    //     switchMap(() => {
+    //         return this.todoService
+    //           .getTodos()
+    //           .map(res => new fromActions.TodosLoaded(res));
+    //       })
+    // );
 }
