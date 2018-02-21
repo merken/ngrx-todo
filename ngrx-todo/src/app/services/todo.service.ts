@@ -13,14 +13,14 @@ export class TodoService {
     }
 
     public createTodo(todo: Todo) {
-        return this.httpService.makeRequest('POST', '/api/todos');
+        return this.httpService.makeRequest('POST', '/api/todos', { body: todo });
     }
 
     public updateTodo(todo: Todo) {
         return this.httpService.makeRequest('PUT', `/api/todos/${todo.id}`, { body: todo });
     }
 
-    public deleteTodo(todo: Todo) {
-        return this.httpService.makeRequest('DELETE', `/api/todos/${todo.id}`, { body: todo });
+    public deleteTodo(id: number) {
+        return this.httpService.makeRequest('DELETE', `/api/todos/${id}`);
     }
 }

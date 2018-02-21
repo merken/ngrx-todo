@@ -1,0 +1,27 @@
+<mat-card dnd-draggable [dragEnabled]="true" [dragData]="todo" (dblclick)="editMode()" *ngIf="!isEdit">
+  <mat-card-header>
+    <mat-card-title>{{todo.title}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      {{todo.content}}
+    </p>
+  </mat-card-content>
+</mat-card>
+<mat-card *ngIf="isEdit" [formGroup]="todoForm">
+  <mat-card-header>
+    <mat-card-title>
+      <input type="text" formControlName="title" />
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      <textarea class="todo-content" formControlName="content" cols="10"></textarea>
+    </p>
+  </mat-card-content>
+  <mat-card-footer>
+    <div class="delete-todo-wrapper">
+      <button mat-button class="delete-todo" (click)="deleteTodo()">Delete</button>
+    </div>
+  </mat-card-footer>
+</mat-card>

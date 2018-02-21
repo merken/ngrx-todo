@@ -29,7 +29,11 @@ namespace Todo.Api.Repositories
 
         public TodoModel AddTodo(TodoModel todo)
         {
-            todo.Id = this.todos.Select(t => t.Id).Max() + 1;
+            var newId = 1;
+            if (this.todos.Any())
+                newId = this.todos.Select(t => t.Id).Max() + 1;
+                
+            todo.Id = newId;
             todo.Status = TodoStatus.TODO;
             this.todos.Add(todo);
             return todo;

@@ -36,6 +36,29 @@ $white: #ffffff;
 $red: #db4432;
 $blue:#354b96;
 
+@mixin headingh1 {
+  font-family: $fontFamilyNormal;
+  font-size: 35px;
+  font-weight: 500;
+  text-align: left;
+  color: $blue;
+}
+
+@mixin headingh2 {
+  font-family: $fontFamilyNormal;
+  font-size: 28px;
+  font-weight: 500;
+  text-align: left;
+  color: $black;
+}
+
+@mixin headingh3 {
+  font-family: $fontFamilyNormal;
+  font-size: 21px;
+  font-weight: 500;
+  text-align: left;
+  color: $black;
+}
 
 @mixin app-component {
   margin-left: 150px;
@@ -47,6 +70,15 @@ $blue:#354b96;
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: auto;
+}
+
+@mixin app-button{
+  font-family: $fontFamilyNormal;
+  border-radius: 10px;
+  width: 169px;
+  height: 40px;
+  background-color: $blue;
+  color:$white;
 }
 
 @mixin main-container {

@@ -5,4 +5,27 @@
   .board-container {
     @include flex-container;
   }
+  .add-todo-wrapper{
+    display: flex;
+    flex-direction: row;
+  }
+  .add-todo{
+    @include app-button;
+    margin-top:15px;
+    flex:auto;
+  }
+
+  .stage{
+    flex-basis: 33%;
+    justify-content: center;
+  }
+
+  .stage header{
+    @include headingh3;
+    text-align: center;
+    border-color: $blue;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 2px;
+  }
 }

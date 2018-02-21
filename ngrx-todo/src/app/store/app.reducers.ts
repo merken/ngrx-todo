@@ -26,7 +26,7 @@ export function AppReducer(
             state = {
                 ...state,
                 isLoading: false,
-                todos: action.payload
+                todos: action.payload.sort((a, b) => b.id - a.id)
             };
             break;
 
@@ -40,10 +40,10 @@ export function AppReducer(
             state = {
                 ...state,
                 isLoading: false,
-                todos: [
+                todos: ([
                     ...state.todos,
                     action.payload
-                 ] as Todo[]
+                ] as Todo[]).sort((a, b) => b.id - a.id)
             };
             break;
 
@@ -57,10 +57,20 @@ export function AppReducer(
             state = {
                 ...state,
                 isLoading: false,
-                todos: [
+                todos: ([
                     ...state.todos.filter(t => t.id != action.payload.id),
                     action.payload
-                 ] as Todo[]
+                ] as Todo[]).sort((a, b) => b.id - a.id)
+            };
+            break;
+
+        case fromApp.TODO_DELETED:
+            state = {
+                ...state,
+                isLoading: false,
+                todos: ([
+                    ...state.todos.filter(t => t.id != action.payload)
+                ] as Todo[]).sort((a, b) => b.id - a.id)
             };
             break;
         default:

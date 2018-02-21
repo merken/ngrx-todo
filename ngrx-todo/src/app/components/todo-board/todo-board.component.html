@@ -1,41 +1,23 @@
 <div class="board-container">
-  <div class="todo" dnd-droppable (onDropSuccess)="droppedInTodo($event)">
-      <header>Todo</header>
-    <mat-card *ngFor="let todo of todos$ | async | todoStatus: 'Todo'" dnd-draggable [dragEnabled]="true" [dragData]="todo">
-      <mat-card-header>
-        <mat-card-title>{{todo.title}}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>
-          {{todo.content}}
-        </p>
-      </mat-card-content>
-    </mat-card>
+  <div class="stage" dnd-droppable (onDropSuccess)="droppedInTodo($event)">
+    <header>Todo</header>
+    <ng-container *ngFor="let todo of todos$ | async | todoStatus: 'Todo'">
+      <app-todo-item [todo]="todo" dnd-draggable [dragEnabled]="true" [dragData]="todo"></app-todo-item>
+    </ng-container>
+    <div class="add-todo-wrapper">
+      <button mat-button class="add-todo" (click)="addNewTodo()">Add new todo</button>
+    </div>
   </div>
-  <div class="doing" dnd-droppable (onDropSuccess)="droppedInDoing($event)">
-      <header>Doing</header>
-      <mat-card *ngFor="let todo of todos$ | async | todoStatus: 'Doing'" dnd-draggable [dragEnabled]="true" [dragData]="todo">
-      <mat-card-header>
-        <mat-card-title>{{todo.title}}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>
-          {{todo.content}}
-        </p>
-      </mat-card-content>
-    </mat-card>
+  <div class="stage" dnd-droppable (onDropSuccess)="droppedInDoing($event)">
+    <header>Doing</header>
+    <ng-container *ngFor="let todo of todos$ | async | todoStatus: 'Doing'">
+      <app-todo-item [todo]="todo" dnd-draggable [dragEnabled]="true" [dragData]="todo"></app-todo-item>
+    </ng-container>
   </div>
-  <div class="done" dnd-droppable (onDropSuccess)="droppedInDone($event)">
-      <header>Done</header>
-      <mat-card *ngFor="let todo of todos$ | async | todoStatus: 'Done'" dnd-draggable [dragEnabled]="true" [dragData]="todo">
-      <mat-card-header>
-        <mat-card-title>{{todo.title}}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>
-          {{todo.content}}
-        </p>
-      </mat-card-content>
-    </mat-card>
+  <div class="stage" dnd-droppable (onDropSuccess)="droppedInDone($event)">
+    <header>Done</header>
+    <ng-container *ngFor="let todo of todos$ | async | todoStatus: 'Done'">
+      <app-todo-item [todo]="todo" dnd-draggable [dragEnabled]="true" [dragData]="todo"></app-todo-item>
+    </ng-container>
   </div>
 </div>

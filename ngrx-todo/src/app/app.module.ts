@@ -17,10 +17,13 @@ import { SignalRService } from './services/signalr.service';
 import { TodoService } from './services/todo.service';
 import { effects, metaReducers, reducers } from './store';
 import { ContentTypeInterceptor } from './interceptors/contenttype.interceptor';
+import { TodoItemComponent } from './components/todo-item/todo-item.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const components = [
   AppComponent,
-  TodoBoardComponent
+  TodoBoardComponent,
+  TodoItemComponent
 ];
 
 const services = [
@@ -39,6 +42,9 @@ const services = [
     BrowserAnimationsModule,
     RouterModule,
     HttpClientModule,
+
+    FormsModule,
+    ReactiveFormsModule,
 
     DndModule.forRoot(),
 

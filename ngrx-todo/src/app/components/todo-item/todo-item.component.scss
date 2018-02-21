@@ -1,0 +1,19 @@
+@import "../../../styles.scss";
+:host {
+  .todo-content{
+      width: 100%;
+      margin-top: 15px;
+  }
+  .delete-todo-wrapper{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  .delete-todo{
+    @include app-button;
+    margin-top:15px;
+    flex:auto;
+  }
+}

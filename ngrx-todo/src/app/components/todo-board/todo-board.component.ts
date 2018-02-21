@@ -16,31 +16,35 @@ export class TodoBoardComponent implements OnInit {
     isLoading$: Observable<boolean>;
     todos$: Observable<Todo[]>;
 
-    constructor(private signalRService: TodoService, private store: Store<AppState>) { }
+    constructor(private store: Store<AppState>) { }
 
     ngOnInit(): void {
         this.isLoading$ = this.store.select(selectors.selectIsLoading);
         this.todos$ = this.store.select(selectors.selectTodos);
     }
 
-    droppedInTodo(event){
+    droppedInTodo(event) {
         this.store.dispatch(new fromActions.UpdateTodo({
             ...event.dragData,
-            status:'Todo'
+            status: 'Todo'
         }));
     }
 
-    droppedInDoing(event){
+    droppedInDoing(event) {
         this.store.dispatch(new fromActions.UpdateTodo({
             ...event.dragData,
-            status:'Doing'
+            status: 'Doing'
         }));
     }
 
-    droppedInDone(event){
+    droppedInDone(event) {
         this.store.dispatch(new fromActions.UpdateTodo({
             ...event.dragData,
-            status:'Done'
+            status: 'Done'
         }));
+    }
+
+    addNewTodo() {
+        this.store.dispatch(new fromActions.AddTodo({ title: '<title>', content: '<content>', status: 'Todo' } as Todo));
     }
 }

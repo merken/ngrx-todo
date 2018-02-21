@@ -54,10 +54,26 @@ export class AppEffects {
     );
 
     @Effect()
+    addTodo$ = this.actions$.ofType(fromActions.ADD_TODO)
+        .map((action: fromActions.AddTodo) => action.payload)
+        .switchMap((todo) => {
+            return this.todoService.createTodo(todo)
+                .map(res => new fromActions.RequestDispatched());
+        });
+
+    @Effect()
     updateTodo$ = this.actions$.ofType(fromActions.UPDATE_TODO)
         .map((action: fromActions.UpdateTodo) => action.payload)
         .switchMap((todo) => {
             return this.todoService.updateTodo(todo)
+                .map(res => new fromActions.RequestDispatched());
+        });
+
+    @Effect()
+    deleteTodo$ = this.actions$.ofType(fromActions.DELETE_TODO)
+        .map((action: fromActions.DeleteTodo) => action.payload)
+        .switchMap((id) => {
+            return this.todoService.deleteTodo(id)
                 .map(res => new fromActions.RequestDispatched());
         });
 }
