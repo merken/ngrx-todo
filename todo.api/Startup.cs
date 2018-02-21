@@ -44,14 +44,14 @@ namespace Todo.Api
             services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
             {
                 builder
-                .WithOrigins("http://localhost:4000")
+                .WithOrigins(Configuration["allowedOrigin"])
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader();
             }));
 
             services.AddSignalR();
-                        
+
             services.Configure<MvcOptions>(options =>
             {
                 options.Filters.Add(new CorsAuthorizationFilterFactory("CorsPolicy"));
@@ -78,7 +78,7 @@ namespace Todo.Api
             {
                 routes.MapRoute("default", "{controller}/{action=Index}/{id?}");
             });
-            
+
             app.UseCors("CorsPolicy");
 
             app.UseSignalR(routes =>
@@ -97,7 +97,8 @@ namespace Todo.Api
             RewriteToSwagger(app);
         }
 
-        private void RewriteToSwagger(IApplicationBuilder app){
+        private void RewriteToSwagger(IApplicationBuilder app)
+        {
             var option = new RewriteOptions();
             option.AddRedirect("^$", "swagger");
 
