@@ -19,7 +19,8 @@ import {
 
 @NgModule({
     imports: [
-      MatButtonModule,
+        MatCardModule,
+        MatButtonModule,
         MatMenuModule,
         MatToolbarModule,
         MatIconModule,
@@ -33,6 +34,7 @@ import {
         MatCheckboxModule
     ],
     exports: [
+        MatCardModule,
         MatButtonModule,
         MatMenuModule,
         MatToolbarModule,
@@ -45,7 +47,7 @@ import {
         MatProgressSpinnerModule,
         MatRadioModule,
         MatCheckboxModule
-      ],
+    ],
 })
 // This module contains all the material imports
 export class MaterialModule { }

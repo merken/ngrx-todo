@@ -17,6 +17,10 @@ export class TodoService {
     }
 
     public updateTodo(todo: Todo) {
-        return this.httpService.makeRequest('POST', '/api/todos', { body: todo });
+        return this.httpService.makeRequest('PUT', `/api/todos/${todo.id}`, { body: todo });
+    }
+
+    public deleteTodo(todo: Todo) {
+        return this.httpService.makeRequest('DELETE', `/api/todos/${todo.id}`, { body: todo });
     }
 }

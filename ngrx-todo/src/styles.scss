@@ -35,3 +35,49 @@ $light-gray: #eceded;
 $white: #ffffff;
 $red: #db4432;
 $blue:#354b96;
+
+
+@mixin app-component {
+  margin-left: 150px;
+  margin-right: 150px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
+}
+
+@mixin main-container {
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
+}
+
+@mixin flex-container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  justify-content: space-between;
+}
+
+@mixin flex-container-vertical {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+@mixin text-wrap {
+  max-width: 400px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+@mixin container-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}

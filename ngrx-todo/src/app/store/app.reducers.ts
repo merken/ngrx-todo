@@ -40,10 +40,10 @@ export function AppReducer(
             state = {
                 ...state,
                 isLoading: false,
-                todos: {
+                todos: [
                     ...state.todos,
-                    ...action.payload
-                } as Todo[]
+                    action.payload
+                 ] as Todo[]
             };
             break;
 
@@ -57,10 +57,10 @@ export function AppReducer(
             state = {
                 ...state,
                 isLoading: false,
-                todos: {
+                todos: [
                     ...state.todos.filter(t => t.id != action.payload.id),
-                    ...action.payload
-                } as Todo[]
+                    action.payload
+                 ] as Todo[]
             };
             break;
         default:

@@ -44,7 +44,7 @@ namespace Todo.Api
             services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
             {
                 builder
-                .WithOrigins("http://localhost:4200")
+                .WithOrigins("http://localhost:4000")
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader();

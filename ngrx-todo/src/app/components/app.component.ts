@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { SignalRService } from '../services/signalr.service';
 import { Observable } from 'rxjs/Observable';
+import { AppState } from '../store/app.reducers';
+import { Store } from '@ngrx/store';
+import { ConnectionEstablished } from '../store/app.actions';
 
 @Component({
   selector: 'app-root',
@@ -9,23 +12,16 @@ import { Observable } from 'rxjs/Observable';
 })
 export class AppComponent implements OnInit {
   title = 'NGRX - TODO';
-  todos: Array<any> = [];
 
-  constructor(private signalRService: SignalRService) { }
+  constructor(private signalRService: SignalRService, private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.signalRService.initializeConnection().subscribe(initialized => {
       if (!initialized)
         console.error("SignalR failed to initialize");
       else {
-        this.signalRService.subscribe('todo-added').subscribe(todo => {
-          this.todos.push(todo);
-        })
+        this.store.dispatch(new ConnectionEstablished());
       }
     });
-  }
-
-  addTodo() {
-    this.signalRService.publish('addTodo', { title: 'Hello', content: 'todo' });
   }
 }

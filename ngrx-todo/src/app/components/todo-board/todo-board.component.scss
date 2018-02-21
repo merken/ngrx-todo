@@ -1,0 +1,8 @@
+@import "../../../styles.scss";
+:host {
+  @include app-component;
+
+  .board-container {
+    @include flex-container;
+  }
+}
