@@ -20,7 +20,7 @@ export class TodoItemComponent implements OnInit {
     @Output() todoUpdated = new EventEmitter<Todo>();
     @Output() todoDeleted = new EventEmitter<Todo>();
 
-    constructor(private store: Store<TodoState>) { }
+    constructor() { }
 
     ngOnInit(): void {
     }
