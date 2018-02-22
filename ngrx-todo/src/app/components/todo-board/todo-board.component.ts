@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { AppState } from '../../store/app.reducers';
 import { Store } from '@ngrx/store';
 import { TodoService } from '../../services/todo.service';
 import { Todo } from '../../models';
@@ -13,38 +12,34 @@ import * as fromActions from '../../store/app.actions';
     styleUrls: ['./todo-board.component.scss']
 })
 export class TodoBoardComponent implements OnInit {
-    isLoading$: Observable<boolean>;
-    todos$: Observable<Todo[]>;
 
-    constructor(private store: Store<AppState>) { }
+    @Input() todos: Todo[];
+
+    constructor(private todoService: TodoService) { }
 
     ngOnInit(): void {
-        this.isLoading$ = this.store.select(selectors.selectIsLoading);
-        this.todos$ = this.store.select(selectors.selectTodos);
     }
 
     droppedInTodo(event) {
-        this.store.dispatch(new fromActions.UpdateTodo({
-            ...event.dragData,
-            status: 'Todo'
-        }));
+        var updatedTodo = event.dragData;
+        updatedTodo.status = 'Todo';
+        this.todoService.updateTodo(updatedTodo).subscribe();
     }
 
     droppedInDoing(event) {
-        this.store.dispatch(new fromActions.UpdateTodo({
-            ...event.dragData,
-            status: 'Doing'
-        }));
+        var updatedTodo = event.dragData;
+        updatedTodo.status = 'Doing';
+        this.todoService.updateTodo(updatedTodo).subscribe();
     }
 
     droppedInDone(event) {
-        this.store.dispatch(new fromActions.UpdateTodo({
-            ...event.dragData,
-            status: 'Done'
-        }));
+        var updatedTodo = event.dragData;
+        updatedTodo.status = 'Done';
+        this.todoService.updateTodo(updatedTodo).subscribe();
     }
 
     addNewTodo() {
-        this.store.dispatch(new fromActions.AddTodo({ title: '<title>', content: '<content>', status: 'Todo' } as Todo));
+        var newTodo = { title: '<title>', content: '<content>', status: 'Todo' } as Todo;
+        this.todoService.createTodo(newTodo).subscribe();
     }
 }

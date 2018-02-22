@@ -1,7 +1,7 @@
 <div class="board-container">
   <div class="stage" dnd-droppable (onDropSuccess)="droppedInTodo($event)">
     <header>Todo</header>
-    <ng-container *ngFor="let todo of todos$ | async | todoStatus: 'Todo'">
+    <ng-container *ngFor="let todo of todos | todoStatus: 'Todo'">
       <app-todo-item [todo]="todo" dnd-draggable [dragEnabled]="true" [dragData]="todo"></app-todo-item>
     </ng-container>
     <div class="add-todo-wrapper">
@@ -10,13 +10,13 @@
   </div>
   <div class="stage" dnd-droppable (onDropSuccess)="droppedInDoing($event)">
     <header>Doing</header>
-    <ng-container *ngFor="let todo of todos$ | async | todoStatus: 'Doing'">
+    <ng-container *ngFor="let todo of todos | todoStatus: 'Doing'">
       <app-todo-item [todo]="todo" dnd-draggable [dragEnabled]="true" [dragData]="todo"></app-todo-item>
     </ng-container>
   </div>
   <div class="stage" dnd-droppable (onDropSuccess)="droppedInDone($event)">
     <header>Done</header>
-    <ng-container *ngFor="let todo of todos$ | async | todoStatus: 'Done'">
+    <ng-container *ngFor="let todo of todos | todoStatus: 'Done'">
       <app-todo-item [todo]="todo" dnd-draggable [dragEnabled]="true" [dragData]="todo"></app-todo-item>
     </ng-container>
   </div>
