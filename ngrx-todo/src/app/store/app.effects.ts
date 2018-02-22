@@ -14,12 +14,26 @@ import { SignalRService } from '../services/signalr.service';
 import * as fromActions from './app.actions';
 import { TodoService } from '../services/todo.service';
 import { map } from 'rxjs/operator/map';
+import { AppState } from '.';
 
 @Injectable()
 export class AppEffects {
     constructor(
         private actions$: Actions,
-        private signalRService: SignalRService,
-        private todoService: TodoService) { }
+        private store: Store<AppState>,
+        private signalRService: SignalRService) { }
 
+    @Effect()
+    connectionEstablished$ = this.actions$.ofType(fromActions.CONNECTION_ESTABLISHED).map((action) => {
+        this.signalRService.subscribe("TODO_ADDED", (todo) => {
+            this.store.dispatch(new fromActions.MessageReceived("TODO_ADDED", todo));
+        });
+        this.signalRService.subscribe("TODO_UPDATED", (todo) => {
+            this.store.dispatch(new fromActions.MessageReceived("TODO_UPDATED", todo));
+        });
+        this.signalRService.subscribe("TODO_DELETED", (id) => {
+            this.store.dispatch(new fromActions.MessageReceived("TODO_DELETED", id));
+        });
+        return new fromActions.SubscriptionCompleted();
+    });
 }

@@ -1,18 +1,29 @@
 import { Action } from '@ngrx/store';
-import { Todo } from '../models';
 
 export const CONNECTION_ESTABLISHED = '[App] Connection Established';
 export const SUBSCRIPTION_COMPLETED = '[App] Subscription Completed';
+export const MESSAGE_RECEIVED = '[App] Message Received';
 export const REQUEST_DISPATCHED = '[App] Request Dispatched';
 
-export const LOAD_TODOS = '[App] Load Todos';
-export const TODOS_LOADED = '[App] Todos Loaded';
+export class ConnectionEstablished implements Action {
+    readonly type = CONNECTION_ESTABLISHED;
+}
 
-export const ADD_TODO = '[App] Add Todo';
-export const TODO_ADDED = '[App] Todo Added';
+export class SubscriptionCompleted implements Action {
+    readonly type = SUBSCRIPTION_COMPLETED;
+}
 
-export const UPDATE_TODO = '[App] Update Todo';
-export const TODO_UPDATED = '[App] Todo Updated';
+export class MessageReceived implements Action {
+    readonly type = MESSAGE_RECEIVED;
+    constructor(public messageType,public payload: any) { }
+}
 
-export const DELETE_TODO = '[App] Delete Todo';
-export const TODO_DELETED = '[App] Todo Deleted';
+export class RequestDispatched implements Action {
+    readonly type = REQUEST_DISPATCHED;
+}
+
+export type Actions =
+    | ConnectionEstablished
+    | SubscriptionCompleted
+    | MessageReceived
+    | RequestDispatched;

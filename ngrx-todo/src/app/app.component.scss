@@ -1,9 +1,14 @@
-@import '../../styles';
+@import '../styles';
 :host {
   display: flex;
   flex-direction: column;
   height: 100%;
   .logo img {
+    margin-top: 12px;
+    height: 60px;
+  }
+
+  .connected img {
     margin-top: 12px;
     height: 60px;
   }

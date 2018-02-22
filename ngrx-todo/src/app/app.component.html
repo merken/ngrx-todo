@@ -3,12 +3,12 @@
     <span class="logo">
       <img src="/assets/images/todo-logo.png" alt="">
     </span>
-
     <span class="title">{{title}}</span>
-    <span>
+    <span class="connected">
+      <img src="/assets/images/connected.png" alt="" *ngIf="(connected$ | async)===true">
     </span>
   </mat-toolbar>
 </header>
 <main>
-    <app-todo-board [(todos)]="todos"></app-todo-board>
+  <app-todo-board></app-todo-board>
 </main>
