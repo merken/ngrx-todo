@@ -25,14 +25,14 @@ export class AppEffects {
 
     @Effect()
     connectionEstablished$ = this.actions$.ofType(fromActions.CONNECTION_ESTABLISHED).map((action) => {
-        this.signalRService.subscribe("TODO_ADDED", (todo) => {
-            this.store.dispatch(new fromActions.MessageReceived("TODO_ADDED", todo));
+        this.signalRService.subscribe('TODO_ADDED', (todo) => {
+            this.store.dispatch(new fromActions.MessageReceived('TODO_ADDED', todo));
         });
-        this.signalRService.subscribe("TODO_UPDATED", (todo) => {
-            this.store.dispatch(new fromActions.MessageReceived("TODO_UPDATED", todo));
+        this.signalRService.subscribe('TODO_UPDATED', (todo) => {
+            this.store.dispatch(new fromActions.MessageReceived('TODO_UPDATED', todo));
         });
-        this.signalRService.subscribe("TODO_DELETED", (id) => {
-            this.store.dispatch(new fromActions.MessageReceived("TODO_DELETED", id));
+        this.signalRService.subscribe('TODO_DELETED', (id) => {
+            this.store.dispatch(new fromActions.MessageReceived('TODO_DELETED', id));
         });
         return new fromActions.SubscriptionCompleted();
     });

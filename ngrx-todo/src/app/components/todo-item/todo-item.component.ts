@@ -1,12 +1,12 @@
 import 'rxjs/add/operator/debounceTime';
-import { Component, OnInit, Input, HostListener } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+
+import { Component, HostListener, Input, OnInit, EventEmitter, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { TodoService } from '../../services/todo.service';
+
 import { Todo } from '../../models';
-import * as selectors from '../../store/app.selectors';
-import * as fromActions from '../../store/app.actions';
-import { FormGroup, FormControl } from '@angular/forms';
+import * as fromActions from '../store/todo.actions';
+import { TodoState } from '../store/todo.reducers';
 
 @Component({
     selector: 'app-todo-item',
@@ -17,7 +17,10 @@ export class TodoItemComponent implements OnInit {
     @Input() todo: Todo;
     isEdit: boolean;
 
-    constructor(private todoService: TodoService) { }
+    @Output() todoUpdated = new EventEmitter<Todo>();
+    @Output() todoDeleted = new EventEmitter<Todo>();
+
+    constructor(private store: Store<TodoState>) { }
 
     ngOnInit(): void {
     }
@@ -33,12 +36,14 @@ export class TodoItemComponent implements OnInit {
     }
 
     saveTodo() {
-        if (this.isEdit)
-            this.todoService.updateTodo(this.todo).subscribe();
+        if (this.isEdit) {
+            this.todoUpdated.emit(this.todo);
+        }
     }
 
     deleteTodo() {
-        if (this.isEdit)
-            this.todoService.deleteTodo(this.todo.id).subscribe();
+        if (this.isEdit) {
+            this.todoDeleted.emit(this.todo);
+        }
     }
 }

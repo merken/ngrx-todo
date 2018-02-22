@@ -15,7 +15,7 @@ export class SubscriptionCompleted implements Action {
 
 export class MessageReceived implements Action {
     readonly type = MESSAGE_RECEIVED;
-    constructor(public messageType,public payload: any) { }
+    constructor(public messageType, public payload: any) { }
 }
 
 export class RequestDispatched implements Action {

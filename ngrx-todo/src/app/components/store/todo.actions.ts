@@ -1,5 +1,5 @@
-import { Action } from "@ngrx/store";
-import { Todo } from "../../models";
+import { Action } from '@ngrx/store';
+import { Todo } from '../../models';
 
 export const LOAD_TODOS = '[Todo] Load Todos';
 export const TODOS_LOADED = '[Todo] Todos Loaded';

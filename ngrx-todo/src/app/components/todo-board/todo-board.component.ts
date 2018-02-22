@@ -13,8 +13,8 @@ import * as selectors from '../store/todo.selectors';
     styleUrls: ['./todo-board.component.scss']
 })
 export class TodoBoardComponent implements OnInit {
-    isLoading$: Observable<boolean>
-    todos$: Observable<Todo[]>
+    isLoading$: Observable<boolean>;
+    todos$: Observable<Todo[]>;
 
     constructor(private store: Store<TodoState>) { }
 
@@ -46,5 +46,13 @@ export class TodoBoardComponent implements OnInit {
 
     addNewTodo() {
         this.store.dispatch(new fromActions.AddTodo({ title: '<title>', content: '<content>', status: 'Todo' } as Todo));
+    }
+
+    saveTodo(todo: Todo) {
+        this.store.dispatch(new fromActions.UpdateTodo(todo));
+    }
+
+    deleteTodo(todo: Todo) {
+        this.store.dispatch(new fromActions.DeleteTodo(todo.id));
     }
 }

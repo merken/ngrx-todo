@@ -2,7 +2,7 @@
   <div class="stage" dnd-droppable (onDropSuccess)="droppedInTodo($event)">
     <header>Todo</header>
     <ng-container *ngFor="let todo of todos$ | async | todoStatus: 'Todo'">
-      <app-todo-item [todo]="todo" dnd-draggable [dragEnabled]="true" [dragData]="todo"></app-todo-item>
+      <app-todo-item [todo]="todo" dnd-draggable [dragEnabled]="true" [dragData]="todo" (todoUpdated)="saveTodo($event)" (todoDeleted)="deleteTodo($event)"></app-todo-item>
     </ng-container>
     <div class="add-todo-wrapper">
       <button mat-button class="add-todo" (click)="addNewTodo()">Add new todo</button>
@@ -11,13 +11,13 @@
   <div class="stage" dnd-droppable (onDropSuccess)="droppedInDoing($event)">
     <header>Doing</header>
     <ng-container *ngFor="let todo of todos$ | async | todoStatus: 'Doing'">
-      <app-todo-item [todo]="todo" dnd-draggable [dragEnabled]="true" [dragData]="todo"></app-todo-item>
+      <app-todo-item [todo]="todo" dnd-draggable [dragEnabled]="true" [dragData]="todo" (todoUpdated)="saveTodo($event)" (todoDeleted)="deleteTodo($event)"></app-todo-item>
     </ng-container>
   </div>
   <div class="stage" dnd-droppable (onDropSuccess)="droppedInDone($event)">
     <header>Done</header>
     <ng-container *ngFor="let todo of todos$ | async | todoStatus: 'Done'">
-      <app-todo-item [todo]="todo" dnd-draggable [dragEnabled]="true" [dragData]="todo"></app-todo-item>
+      <app-todo-item [todo]="todo" dnd-draggable [dragEnabled]="true" [dragData]="todo" (todoUpdated)="saveTodo($event)" (todoDeleted)="deleteTodo($event)"></app-todo-item>
     </ng-container>
   </div>
 </div>

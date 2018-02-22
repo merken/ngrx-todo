@@ -1,5 +1,5 @@
-import * as fromActions from "./todo.actions";
-import { Todo } from "../../models";
+import * as fromActions from './todo.actions';
+import { Todo } from '../../models';
 
 export interface TodoState {
     isLoading: boolean;
@@ -58,7 +58,7 @@ export function TodoReducer(
                 ...state,
                 isLoading: false,
                 todos: ([
-                    ...state.todos.filter(t => t.id != action.payload.id),
+                    ...state.todos.filter(t => t.id !== action.payload.id),
                     action.payload
                 ] as Todo[]).sort((a, b) => b.id - a.id)
             };
@@ -69,7 +69,7 @@ export function TodoReducer(
                 ...state,
                 isLoading: false,
                 todos: ([
-                    ...state.todos.filter(t => t.id != action.payload)
+                    ...state.todos.filter(t => t.id !== action.payload)
                 ] as Todo[]).sort((a, b) => b.id - a.id)
             };
             break;

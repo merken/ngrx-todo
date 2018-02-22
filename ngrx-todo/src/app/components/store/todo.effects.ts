@@ -20,17 +20,17 @@ export class TodoEffects {
 
     @Effect()
     todoAdded$ = this.actions$.ofType(fromApp.MESSAGE_RECEIVED).pipe(
-        filter((action: fromApp.MessageReceived) => action.messageType === "TODO_ADDED"),
+        filter((action: fromApp.MessageReceived) => action.messageType === 'TODO_ADDED'),
         switchMap((action: fromApp.MessageReceived) => Observable.of(new fromActions.TodoAdded(action.payload))));
-    
+
     @Effect()
     todoDeleted$ = this.actions$.ofType(fromApp.MESSAGE_RECEIVED).pipe(
-        filter((action: fromApp.MessageReceived) => action.messageType === "TODO_DELETED"),
+        filter((action: fromApp.MessageReceived) => action.messageType === 'TODO_DELETED'),
         switchMap((action: fromApp.MessageReceived) => Observable.of(new fromActions.TodoDeleted(action.payload))));
 
     @Effect()
     todoUpdated$ = this.actions$.ofType(fromApp.MESSAGE_RECEIVED).pipe(
-        filter((action: fromApp.MessageReceived) => action.messageType === "TODO_UPDATED"),
+        filter((action: fromApp.MessageReceived) => action.messageType === 'TODO_UPDATED'),
         switchMap((action: fromApp.MessageReceived) => Observable.of(new fromActions.TodoUpdated(action.payload))));
 
     @Effect()
