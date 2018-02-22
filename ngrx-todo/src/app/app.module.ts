@@ -16,6 +16,8 @@ import { TodoStatusPipe } from './pipes/todo.status.pipe';
 import { HttpService } from './services/http.service';
 import { SignalRService } from './services/signalr.service';
 import { TodoService } from './services/todo.service';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 const components = [
   AppComponent,
@@ -49,8 +51,8 @@ const services = [
 
     AppRoutingModule,
 
-    // StoreModule.forRoot(reducers, { metaReducers }),
-    // EffectsModule.forRoot(effects),
+    // StoreModule.forRoot({}),
+    // EffectsModule.forRoot([]),
   ],
   providers: [
     ...services,
