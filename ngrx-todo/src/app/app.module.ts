@@ -18,6 +18,7 @@ import { SignalRService } from './services/signalr.service';
 import { TodoService } from './services/todo.service';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { reducers, metaReducers } from './store';
 
 const components = [
   AppComponent,
@@ -51,8 +52,8 @@ const services = [
 
     AppRoutingModule,
 
-    // StoreModule.forRoot({}),
-    // EffectsModule.forRoot([]),
+    StoreModule.forRoot(null, {metaReducers}),
+    EffectsModule.forRoot(null),
   ],
   providers: [
     ...services,
