@@ -5,10 +5,11 @@
     </span>
 
     <span class="title">{{title}}</span>
-    <span>
+    <span class="connected">
+      <img src="/assets/images/connected.png" alt="" *ngIf="connected === true">
     </span>
   </mat-toolbar>
 </header>
 <main>
-    <app-todo-board [(todos)]="todos"></app-todo-board>
+  <app-todo-board [(todos)]="todos"></app-todo-board>
 </main>

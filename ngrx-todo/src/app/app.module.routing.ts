@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AppComponent } from './components/app.component';
+import { AppComponent } from './app.component';
 
 @NgModule({
   imports: [RouterModule],

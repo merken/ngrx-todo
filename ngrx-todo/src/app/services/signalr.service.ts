@@ -34,7 +34,7 @@ export class SignalRService {
                     observer.next(true);
                     observer.complete();
                 });
-        })
+        });
     }
 
     public subscribe(event: string, handler: TodoCallback) {

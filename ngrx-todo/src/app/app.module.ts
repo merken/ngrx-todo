@@ -8,7 +8,7 @@ import { DndModule } from 'ng2-dnd';
 
 import { MaterialModule } from '../material';
 import { AppRoutingModule } from './app.module.routing';
-import { AppComponent } from './components/app.component';
+import { AppComponent } from './app.component';
 import { TodoBoardComponent } from './components/todo-board/todo-board.component';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { ContentTypeInterceptor } from './interceptors/contenttype.interceptor';
