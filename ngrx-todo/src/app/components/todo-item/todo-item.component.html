@@ -3,6 +3,8 @@
     <mat-card-title>{{todo.title}}</mat-card-title>
   </mat-card-header>
   <mat-card-content>
+    <p [innerHTML]="todo.contentHtml">
+    </p>
     <p>
       {{todo.content}}
     </p>
@@ -15,9 +17,7 @@
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <p>
-      <textarea class="todo-content" formControlName="content" cols="10"></textarea>
-    </p>
+    <textarea class="todo-content" formControlName="content" cols="10"></textarea>
   </mat-card-content>
   <mat-card-footer>
     <div class="delete-todo-wrapper">

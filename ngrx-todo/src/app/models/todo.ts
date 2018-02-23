@@ -3,4 +3,5 @@ export interface Todo {
     status: string;
     title: string;
     content: string;
+    contentHtml: string;
 }

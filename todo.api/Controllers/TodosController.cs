@@ -33,6 +33,22 @@ namespace Todo.Api.Controllers
             return this.todoRepository.GetAll().FirstOrDefault(t => t.Id == id);
         }
 
+        [HttpPost("override")]
+        public async Task Post([FromBody]TodoModel[] todos)
+        {
+            foreach (var todo in this.todoRepository.GetAll().ToArray())
+            {
+                this.todoRepository.DeleteTodo(todo.Id);
+                await this.hubcontext.Clients.All.InvokeAsync("TODO_DELETED", todo.Id);
+            }
+
+            foreach (var id in todos.Select(t => t.Id).ToArray())
+                await this.hubcontext.Clients.All.InvokeAsync("TODO_DELETED", id);
+
+            foreach (var todo in todos.OrderBy(t => t.Id))
+                await this.hubcontext.Clients.All.InvokeAsync("TODO_ADDED", todo);
+        }
+
         [HttpPost]
         public async Task<TodoModel> Post([FromBody]TodoModel todo)
         {

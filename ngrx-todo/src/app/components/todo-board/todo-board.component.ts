@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, State } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
 import { Todo } from '../../models';
 import * as fromActions from '../store/todo.actions';
 import { TodoState } from '../store/todo.reducers';
 import * as selectors from '../store/todo.selectors';
+import { AppState } from '../../store';
 
 @Component({
     selector: 'app-todo-board',
@@ -16,7 +17,7 @@ export class TodoBoardComponent implements OnInit {
     isLoading$: Observable<boolean>;
     todos$: Observable<Todo[]>;
 
-    constructor(private store: Store<TodoState>) { }
+    constructor(private store: Store<TodoState>, private allstate:Store<AppState> ) { }
 
     ngOnInit(): void {
         this.isLoading$ = this.store.select(selectors.selectIsLoading);
@@ -45,6 +46,10 @@ export class TodoBoardComponent implements OnInit {
     }
 
     addNewTodo() {
+        let state = {};
+        this.allstate.subscribe(s => state = s);
+
+        debugger;
         this.store.dispatch(new fromActions.AddTodo({ title: '<title>', content: '<content>', status: 'Todo' } as Todo));
     }
 
