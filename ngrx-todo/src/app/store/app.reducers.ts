@@ -18,6 +18,6 @@ export function AppReducer(
             };
             break;
     }
-    
+
     return state;
 }

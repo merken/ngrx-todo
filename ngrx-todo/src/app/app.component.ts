@@ -26,10 +26,10 @@ export class AppComponent implements OnInit {
     this.connected$ = this.store.select(selectors.selectSignalRConnectionEstablished);
     setTimeout(() => {
       this.signalRService.initializeConnection().subscribe(initialized => {
-        if (!initialized)
-          console.error("SignalR failed to initialize");
-        else {
-          this.store.dispatch(new fromActions.ConnectionEstablished())
+        if (initialized) {
+          this.store.dispatch(new fromActions.ConnectionEstablished());
+        } else {
+          console.error('SignalR failed to initialize');
         }
       });
     }, 2500);

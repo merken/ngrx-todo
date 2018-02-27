@@ -1,10 +1,10 @@
-import { ActionReducerMap, compose, combineReducers, ActionReducer, MetaReducer } from "@ngrx/store";
-import { environment } from "../../environments/environment";
+import { ActionReducerMap, compose, combineReducers, ActionReducer, MetaReducer } from '@ngrx/store';
+import { environment } from '../../environments/environment';
 import { storeLogger } from 'ngrx-store-logger';
-import { AppReducer } from "./app.reducers";
-import { AppEffects } from "./app.effects";
-import { TodoState, TodoReducer } from "../components/store/todo.reducers";
-import { TodoEffects } from "../components/store/todo.effects";
+import { AppReducer } from './app.reducers';
+import { AppEffects } from './app.effects';
+import { TodoState, TodoReducer } from '../components/store/todo.reducers';
+import { TodoEffects } from '../components/store/todo.effects';
 
 export interface AppState {
     signalRConnectionEstablished: boolean;
