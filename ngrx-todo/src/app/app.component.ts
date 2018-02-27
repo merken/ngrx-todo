@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   connected$: Observable<boolean>;
 
   constructor(private signalRService: SignalRService,
-    private store: Store<AppState>, private todoService: TodoService) { }
+    private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.connected$ = this.store.select(selectors.selectSignalRConnectionEstablished);
