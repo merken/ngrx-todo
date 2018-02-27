@@ -17,7 +17,7 @@ export class TodoBoardComponent implements OnInit {
     isLoading$: Observable<boolean>;
     todos$: Observable<Todo[]>;
 
-    constructor(private store: Store<TodoState>, private allstate:Store<AppState> ) { }
+    constructor(private store: Store<TodoState>) { }
 
     ngOnInit(): void {
         this.isLoading$ = this.store.select(selectors.selectIsLoading);
@@ -46,10 +46,6 @@ export class TodoBoardComponent implements OnInit {
     }
 
     addNewTodo() {
-        let state = {};
-        this.allstate.subscribe(s => state = s);
-
-        debugger;
         this.store.dispatch(new fromActions.AddTodo({ title: '<title>', content: '<content>', status: 'Todo' } as Todo));
     }
 

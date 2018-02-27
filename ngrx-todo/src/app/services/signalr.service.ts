@@ -12,7 +12,6 @@ export class SignalRService {
     private hubConnection: HubConnection;
     private _isInitialized: boolean;
 
-
     constructor() {
         this.hubConnection = new HubConnection(`${environment.hub_host}/todo`);
     }

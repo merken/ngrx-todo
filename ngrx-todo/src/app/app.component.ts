@@ -17,13 +17,10 @@ import { timeout } from 'q';
 })
 export class AppComponent implements OnInit {
   title = 'NGRX - TODO';
-
-  todos: Todo[] = [];
-
   connected$: Observable<boolean>;
 
   constructor(private signalRService: SignalRService,
-    private store: Store<AppState>, private todoService: TodoService, private changeDetector: ChangeDetectorRef) { }
+    private store: Store<AppState>, private todoService: TodoService) { }
 
   ngOnInit(): void {
     this.connected$ = this.store.select(selectors.selectSignalRConnectionEstablished);
@@ -36,18 +33,5 @@ export class AppComponent implements OnInit {
         }
       });
     }, 2500);
-  }
-
-  private removeTodo(id: number) {
-    var updatedIndex = this.todos.findIndex(t => t.id == id);
-    this.todos.splice(updatedIndex, 1);
-  }
-
-  private sortTodos() {
-    this.todos = this.todos.sort((a, b) => b.id - a.id)
-  }
-
-  private triggerChange() {
-    this.todos = [...this.todos];
   }
 }
