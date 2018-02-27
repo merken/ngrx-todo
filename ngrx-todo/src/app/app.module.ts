@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { DndModule } from 'ng2-dnd';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { MaterialModule } from '../material';
 import { AppComponent } from './app.component';
@@ -52,8 +53,11 @@ const services = [
 
     AppRoutingModule,
 
-    StoreModule.forRoot(reducers, {metaReducers}),
+    StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot(effects),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25 //  Retains last 25 states
+    }),
   ],
   providers: [
     ...services,
