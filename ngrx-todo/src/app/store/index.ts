@@ -1,7 +1,7 @@
 import { ActionReducerMap, compose, combineReducers, ActionReducer, MetaReducer } from "@ngrx/store";
 import { environment } from "../../environments/environment";
 import { storeLogger } from 'ngrx-store-logger';
-import { AppState, AppReducer } from "./app.reducers";
+// import { AppState, AppReducer } from "./app.reducers";
 
 export interface AllState{
 }
