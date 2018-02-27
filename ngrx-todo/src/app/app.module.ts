@@ -52,8 +52,8 @@ const services = [
 
     AppRoutingModule,
 
-    // StoreModule.forRoot(null, {metaReducers}),
-    // EffectsModule.forRoot(null),
+    // StoreModule.forRoot(reducers,{metaReducers}),
+    // EffectsModule.forRoot(effects),
   ],
   providers: [
     ...services,
