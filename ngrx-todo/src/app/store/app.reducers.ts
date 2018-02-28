@@ -12,11 +12,10 @@ export function AppReducer(
 ): AppState {
     switch (action.type) {
         case fromApp.CONNECTION_ESTABLISHED:
-            state = {
+            return {
                 ...state,
                 signalRConnectionEstablished: true
             };
-            break;
     }
 
     return state;

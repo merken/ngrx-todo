@@ -17,27 +17,26 @@ export function TodoReducer(
 ): TodoState {
     switch (action.type) {
         case fromActions.LOAD_TODOS:
-            state = {
+            return {
                 ...state,
                 isLoading: true
             };
-            break;
+
         case fromActions.TODOS_LOADED:
-            state = {
+            return {
                 ...state,
                 isLoading: false,
                 todos: action.payload.sort((a, b) => b.id - a.id)
             };
-            break;
 
         case fromActions.ADD_TODO:
-            state = {
+            return {
                 ...state,
                 isLoading: true
             };
-            break;
+
         case fromActions.TODO_ADDED:
-            state = {
+            return {
                 ...state,
                 isLoading: false,
                 todos: ([
@@ -45,16 +44,15 @@ export function TodoReducer(
                     action.payload
                 ] as Todo[]).sort((a, b) => b.id - a.id)
             };
-            break;
 
         case fromActions.UPDATE_TODO:
-            state = {
+            return {
                 ...state,
                 isLoading: true
             };
-            break;
+
         case fromActions.TODO_UPDATED:
-            state = {
+            return {
                 ...state,
                 isLoading: false,
                 todos: ([
@@ -62,19 +60,16 @@ export function TodoReducer(
                     action.payload
                 ] as Todo[]).sort((a, b) => b.id - a.id)
             };
-            break;
 
         case fromActions.TODO_DELETED:
-            state = {
+            return {
                 ...state,
                 isLoading: false,
                 todos: ([
                     ...state.todos.filter(t => t.id !== action.payload)
                 ] as Todo[]).sort((a, b) => b.id - a.id)
             };
-            break;
-        default:
-            return state;
+
     }
     return state;
 }
