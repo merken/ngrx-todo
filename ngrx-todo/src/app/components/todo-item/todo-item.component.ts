@@ -1,6 +1,6 @@
 import 'rxjs/add/operator/debounceTime';
 
-import { Component, HostListener, Input, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, HostListener, Input, OnInit, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
@@ -11,7 +11,8 @@ import { TodoState } from '../store/todo.reducers';
 @Component({
     selector: 'app-todo-item',
     templateUrl: './todo-item.component.html',
-    styleUrls: ['./todo-item.component.scss']
+    styleUrls: ['./todo-item.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush    
 })
 export class TodoItemComponent implements OnInit {
     @Input() todo: Todo;

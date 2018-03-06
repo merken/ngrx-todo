@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store, State } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
@@ -11,7 +11,8 @@ import { AppState } from '../../store';
 @Component({
     selector: 'app-todo-board',
     templateUrl: './todo-board.component.html',
-    styleUrls: ['./todo-board.component.scss']
+    styleUrls: ['./todo-board.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoBoardComponent implements OnInit {
     isLoading$: Observable<boolean>;
