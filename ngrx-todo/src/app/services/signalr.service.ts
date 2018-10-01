@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HubConnection } from '@aspnet/signalr-client';
 import { Observable } from 'rxjs/Observable';
 
-import { environment } from '../../environments/environment';
-import { Todo } from '../models';
+import { ConfigService } from './config.service';
 
 export type TodoCallback = (msg: any) => any;
 
@@ -12,8 +11,11 @@ export class SignalRService {
     private hubConnection: HubConnection;
     private _isInitialized: boolean;
 
-    constructor() {
-        this.hubConnection = new HubConnection(`${environment.hub_host}/todo`);
+    constructor(private configService: ConfigService) {
+    }
+
+    public configure() {
+        this.hubConnection = new HubConnection(`${this.configService.config.hub_host}/todo`);
     }
 
     public get isInitialized(): boolean {

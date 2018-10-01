@@ -1,5 +1,6 @@
+import { ConfigService } from './services/config.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,6 +21,7 @@ import { HttpService } from './services/http.service';
 import { SignalRService } from './services/signalr.service';
 import { TodoService } from './services/todo.service';
 import { effects, metaReducers, reducers } from './store';
+import { Initializer } from './app.module.initializer';
 
 const components = [
   AppComponent,
@@ -30,7 +32,8 @@ const components = [
 const services = [
   HttpService,
   SignalRService,
-  TodoService
+  TodoService,
+  ConfigService
 ];
 
 @NgModule({
@@ -61,6 +64,12 @@ const services = [
   ],
   providers: [
     ...services,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: Initializer,
+      multi: true,
+      deps: [ConfigService]
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ContentTypeInterceptor,

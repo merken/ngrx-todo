@@ -45,7 +45,6 @@ namespace Todo.Api
             {
                 builder
                 .WithOrigins(Configuration["allowedOrigin"])
-                .AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader();
             }));

@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
     private store: Store<AppState>) { }
 
   ngOnInit(): void {
+    this.signalRService.configure();
     this.connected$ = this.store.select(selectors.selectSignalRConnectionEstablished);
     setTimeout(() => {
       this.signalRService.initializeConnection().subscribe(initialized => {

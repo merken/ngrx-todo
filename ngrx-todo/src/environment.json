@@ -1,0 +1,4 @@
+{
+  "api_host": "http://localhost:5000",
+  "hub_host": "http://localhost:5000"
+}

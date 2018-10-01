@@ -1,16 +1,16 @@
+import { ConfigService } from './config.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { catchError, map } from 'rxjs/operators';
-
-import {environment } from '../../environments/environment';
 
 @Injectable()
 export class HttpService {
     private configuration: any;
 
     constructor(
-        private http: HttpClient
+        private http: HttpClient,
+        private configService: ConfigService
     ) { }
 
     public makeRequest(method, path, options: any = {}) {
@@ -19,7 +19,7 @@ export class HttpService {
         }
 
         return this.http
-            .request(method, `${environment.api_host}${path}`, options)
+            .request(method, `${this.configService.config.api_host}${path}`, options)
             .pipe(
                 map(resp => resp || []),
                 catchError(errResp => Observable.throw(errResp.error)));
